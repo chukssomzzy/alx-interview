@@ -7,12 +7,7 @@ def pascal_triangle(n):
     """Implements pascal triangle"""
     pascal_tri = [[1]]
 
-    if n == 0:
-        return pascal_tri
-    elif n > 2:
-        n -= 1
-
-    for i in range(n):
+    for i in range(n - 1):
         tri = list(range(i + 2))
         tri_size = len(pascal_tri[i])
         for j in range(tri_size):
@@ -26,4 +21,4 @@ def pascal_triangle(n):
             tri[j] = left_val + cur_val
             tri[j + 1] = right_val + cur_val
         pascal_tri.append(tri)
-    return (pascal_tri)
+    return (pascal_tri[:n])
