@@ -7,7 +7,7 @@ from typing import Tuple, Union
 def minOperations(n: int) -> int:
     """GET THE MINIMUM OPERATIONS"""
     fac: Union[Tuple[int, int], None]
-    if n == 1 or n == 0 or n < 0 or n > 1000:
+    if n == 1 or n == 0 or n < 0:
         return 0
 
     if not n % 2:
