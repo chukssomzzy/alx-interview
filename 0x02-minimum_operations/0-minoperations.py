@@ -14,7 +14,6 @@ def minOperations(n: int, chars_at: int = 1) -> int:
         ops = minOperations(math.floor(n / 2), n) + 2
     elif fac := factor(n):
         ops = minOperations(fac[1], n) + fac[0]
-        print(f"{n} -> Operations {ops}", f"factor {fac}")
     elif math.floor(math.sqrt(n)) ** 2 == n:
         ops = minOperations(math.floor(math.sqrt(n)), n) \
             + math.floor(math.sqrt(n))
