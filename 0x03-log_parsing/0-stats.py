@@ -24,7 +24,7 @@ def parse_stdin():
                 else:
                     status[str(key)] = 1
                 print(f"File size: {file_size}")
-                for key, val in sorted(status.items(), key=itemgetter(1)):
+                for key, val in sorted(status.items(), key=itemgetter(0)):
                     print(f"{key}: {val}")
             elif match:
                 file_size += int(match.group("file_size"))
@@ -38,7 +38,7 @@ def parse_stdin():
             line = sys.stdin.readline()
     except KeyboardInterrupt:
         print(f"File size: {file_size}")
-        for key, val in sorted(status.items(), key=itemgetter(1)):
+        for key, val in sorted(status.items(), key=itemgetter(0)):
             print(f"{key}: {val}")
 
 
