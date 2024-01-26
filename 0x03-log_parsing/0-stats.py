@@ -14,7 +14,7 @@ def parse_stdin():
     try:
         while True:
             no_line += 1
-            match = p.match(line)
+            match = p.fullmatch(line)
             if match and not no_line % 10:
                 file_size += int(match.group("file_size"))
                 key = str(match.group("status_code"))
@@ -36,8 +36,7 @@ def parse_stdin():
             if not line:
                 raise EOFError
     except (KeyboardInterrupt, EOFError):
-        if file_size:
-            print("File size: {}".format(file_size))
+        print("File size: {}".format(file_size))
         for key, val in sorted(status.items(), key=itemgetter(0)):
             print("{}: {:d}".format(key, val))
 
