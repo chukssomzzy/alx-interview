@@ -12,7 +12,7 @@ def parse_stdin():
     line = sys.stdin.readline()
     status = {}
     try:
-        while line:
+        while True:
             no_line += 1
             match = p.match(line)
             if match and not no_line % 10:
@@ -33,11 +33,12 @@ def parse_stdin():
                 else:
                     status[key] = 1
             line = sys.stdin.readline()
-    except (KeyboardInterrupt or EOFError):
+            if not line:
+                raise EOFError
+    except (KeyboardInterrupt, EOFError):
         print("File size: {}".format(file_size))
         for key, val in sorted(status.items(), key=itemgetter(0)):
             print("{}: {:d}".format(key, val))
-        raise
 
 
 if __name__ == "__main__":
