@@ -36,7 +36,8 @@ def parse_stdin():
             if not line:
                 raise EOFError
     except (KeyboardInterrupt, EOFError):
-        print("File size: {}".format(file_size))
+        if file_size:
+            print("File size: {}".format(file_size))
         for key, val in sorted(status.items(), key=itemgetter(0)):
             print("{}: {:d}".format(key, val))
 
