@@ -33,7 +33,7 @@ def parse_stdin():
                 else:
                     status[key] = 1
             line = sys.stdin.readline()
-    except KeyboardInterrupt:
+    except (KeyboardInterrupt or EOFError):
         print("File size: {}".format(file_size))
         for key, val in sorted(status.items(), key=itemgetter(0)):
             print("{}: {:d}".format(key, val))
