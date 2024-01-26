@@ -14,7 +14,7 @@ def parse_stdin():
     try:
         while True:
             no_line += 1
-            match = p.fullmatch(line)
+            match = p.match(line)
             if match and not no_line % 10:
                 file_size += int(match.group("file_size"))
                 key = str(match.group("status_code"))
