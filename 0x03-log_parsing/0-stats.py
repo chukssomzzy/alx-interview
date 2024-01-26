@@ -15,8 +15,7 @@ def parse_stdin():
         while line:
             no_line += 1
             match = p.match(line)
-            if match and no_line == 10:
-                no_line = 0
+            if match and not no_line % 10:
                 file_size += int(match.group("file_size"))
                 key = str(match.group("status_code"))
                 if key in status:
@@ -33,8 +32,6 @@ def parse_stdin():
                     status[key] += 1
                 else:
                     status[key] = 1
-            else:
-                no_line += 1
             line = sys.stdin.readline()
     except KeyboardInterrupt:
         print("File size: {}".format(file_size))
