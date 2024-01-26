@@ -20,12 +20,12 @@ def parse_stdin():
                 file_size += int(match.group("file_size"))
                 key = str(match.group("status_code"))
                 if key in status:
-                    status[str(key)] += 1
+                    status[key] += 1
                 else:
-                    status[str(key)] = 1
-                print(f"File size: {file_size}")
+                    status[key] = 1
+                print("File size: {:d}".format(file_size))
                 for key, val in sorted(status.items(), key=itemgetter(0)):
-                    print(f"{key}: {val}")
+                    print("{}: {:d}".format(key, val))
             elif match:
                 file_size += int(match.group("file_size"))
                 key = str(match.group("status_code"))
@@ -37,9 +37,10 @@ def parse_stdin():
                 no_line += 1
             line = sys.stdin.readline()
     except KeyboardInterrupt:
-        print(f"File size: {file_size}")
+        print("File size: {}".format(file_size))
         for key, val in sorted(status.items(), key=itemgetter(0)):
-            print(f"{key}: {val}")
+            print("{}: {:d}".format(key, val))
+        raise
 
 
 if __name__ == "__main__":
