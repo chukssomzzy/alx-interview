@@ -1,10 +1,8 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """Validate utf8"""
 
 
 from typing import List
-import pdb
-# pdb.set_trace()
 
 
 def validUTF8(data: List[int]) -> bool:
