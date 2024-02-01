@@ -28,6 +28,8 @@ def validUTF8(data: List[int]) -> bool:
                 b_expec += 1
             elif b_expec < 4 and not b_seen and current_b and not next_b:
                 break
+            elif b_expec == 1 and current_b == 1:
+                return False  # Reject overlong encoding
             else:
                 return False
             if b_seen == b_expec:
