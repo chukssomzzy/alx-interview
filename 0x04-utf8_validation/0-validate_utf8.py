@@ -26,7 +26,7 @@ def validUTF8(data: List[int]) -> bool:
                 break
             elif b_expec < 4 and not b_seen and current_b:
                 b_expec += 1
-            elif b_expec == 4 and not b_seen and current_b:
+            elif b_expec == 4 and not b_seen and not current_b:
                 break
             else:
                 return False
