@@ -34,4 +34,6 @@ def validUTF8(data: List[int]) -> bool:
                 b_seen = 0
                 b_expec = 0
                 break
+    if b_seen != b_expec:
+        return False
     return True
