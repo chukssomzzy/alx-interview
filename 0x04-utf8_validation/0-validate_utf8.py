@@ -17,7 +17,7 @@ def validUTF8(data: List[int]) -> bool:
         for i in range(b_len):
             current_b = int(b[i], base=2)
             next_b = 0
-            if i < (b_len - 1):
+            if i < (b_len - 2):
                 next_b = int(b[i + 1], base=2)
             if not i and not current_b and not b_expec:
                 break
@@ -28,8 +28,6 @@ def validUTF8(data: List[int]) -> bool:
                 b_expec += 1
             elif b_expec < 4 and not b_seen and current_b and not next_b:
                 break
-            elif b_expec == 1 and current_b == 1:
-                return False  # Reject overlong encoding
             else:
                 return False
             if b_seen == b_expec:
