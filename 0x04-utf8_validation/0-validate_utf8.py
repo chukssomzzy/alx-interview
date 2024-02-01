@@ -17,16 +17,16 @@ def validUTF8(data: List[int]) -> bool:
         for i in range(b_len):
             current_b = int(b[i], base=2)
             next_b = 0
-            if i < (b_len - 2):
+            if i < (b_len - 1):
                 next_b = int(b[i + 1], base=2)
             if not i and not current_b and not b_expec:
                 break
             elif not i and current_b and not next_b:
                 b_seen += 1
                 break
-            elif b_expec < 5 and not b_seen and current_b and next_b:
+            elif b_expec < 4 and not b_seen and current_b and next_b:
                 b_expec += 1
-            elif b_expec < 5 and not b_seen and current_b and not next_b:
+            elif b_expec < 4 and not b_seen and current_b and not next_b:
                 break
             else:
                 return False
