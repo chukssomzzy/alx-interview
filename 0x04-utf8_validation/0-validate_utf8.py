@@ -23,10 +23,8 @@ def validUTF8(data: List[int]) -> bool:
                 break
             elif not i and current_b and not next_b:
                 b_seen += 1
-            elif b_expec < 4 and not b_seen and current_b and next_b:
+            elif b_expec < 5 and not b_seen and current_b and next_b:
                 b_expec += 1
-            elif b_expec == 4 and not b_seen and current_b and not next_b:
-                break
             else:
                 return False
             if b_seen == b_expec:
