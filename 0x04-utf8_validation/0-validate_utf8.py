@@ -20,9 +20,7 @@ def validUTF8(data: List[int]) -> bool:
             elif byte >> 3 == 0b11110:
                 n_byte = 3
         else:
-            print(n_byte)
-            if byte >> 6 == 0b10 and n_byte:
-                n_byte -= 1
-            else:
+            if byte >> 6 != 0b10:
                 return False
+            n_byte -= 1
     return (n_byte == 0)
