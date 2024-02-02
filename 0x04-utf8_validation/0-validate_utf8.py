@@ -14,16 +14,14 @@ def validUTF8(data: List[int]) -> bool:
         if byte > max_byte:
             return False
         if not n_byte:
-            if byte >> 7 == 0:
-                continue
+            if byte >> 7 != 0:
+                return False
             elif byte >> 5 == 0b110:
                 n_byte = 1
             elif byte >> 4 == 0b1110:
                 n_byte = 2
             elif byte >> 3 == 0b11110:
                 n_byte = 3
-            elif byte >> 2 == 0b111110:
-                n_byte = 4
             else:
                 return False
         else:
@@ -32,4 +30,4 @@ def validUTF8(data: List[int]) -> bool:
                 n_byte -= 1
             else:
                 return False
-    return True
+    return (n_byte == 0)
