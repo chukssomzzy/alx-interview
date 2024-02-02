@@ -13,7 +13,7 @@ def validUTF8(data: List[int]) -> bool:
         if not n_byte:
             if byte >> 7 == 0:
                 continue
-            elif byte >> 5 == 0b110:
+            if byte >> 5 == 0b110:
                 n_byte = 1
             elif byte >> 4 == 0b1110:
                 n_byte = 2
