@@ -7,33 +7,31 @@ from typing import List
 
 def validUTF8(data: List[int]) -> bool:
     """Validate utf8"""
-    b_seen = 0
-    b_expec = 0
-    b_len = 8
-    for code_point in data:
-        if code_point >= 256:
+    n_byte = 0
+    c_ra_str = 128
+    c_ra_end = 191
+    max_byte = 247
+
+    for byte in data:
+        if byte > max_byte:
             return False
-        b = f"{code_point:08b}"
-        for i in range(b_len):
-            current_b = int(b[i], base=2)
-            next_b = 0
-            if i < (b_len - 2):
-                next_b = int(b[i + 1], base=2)
-            if not i and not current_b and not b_expec:
-                break
-            elif not i and current_b and not next_b:
-                b_seen += 1
-                break
-            elif b_expec < 4 and not b_seen and current_b and next_b:
-                b_expec += 1
-            elif b_expec < 4 and not b_seen and current_b and not next_b:
-                break
+        if not n_byte:
+            if byte >> 7 == 0:
+                continue
+            elif byte >> 5 == 0b110 and c_ra_str > byte < c_ra_end:
+                n_byte += 1
+            elif byte >> 4 == 0b1110 and c_ra_str > byte < c_ra_end:
+                n_byte += 2
+            elif byte >> 3 == 0b11110 and c_ra_str > byte < c_ra_end:
+                n_byte += 3
+            elif byte >> 2 == 0b111110 and c_ra_str > byte < c_ra_end:
+                n_byte += 4
             else:
                 return False
-            if b_seen == b_expec:
-                b_seen = 0
-                b_expec = 0
-                break
-    if b_seen != b_expec:
-        return False
+        else:
+            print(n_byte)
+            if byte >> 6 == 0b10 and n_byte:
+                n_byte -= 1
+            else:
+                return False
     return True
