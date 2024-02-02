@@ -40,3 +40,7 @@ print(validUTF8(data))  # Should print False
 # Test Case 10: Invalid start byte
 data = [128, 65]
 print(validUTF8(data))  # Should print False
+
+# Test
+data = [467, 133, 108]
+print(validUTF8(data))
