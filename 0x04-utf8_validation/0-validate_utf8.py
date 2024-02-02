@@ -8,11 +8,8 @@ from typing import List
 def validUTF8(data: List[int]) -> bool:
     """Validate utf8"""
     n_byte = 0
-    max_byte = 247
 
     for byte in data:
-        if byte > max_byte:
-            return False
         if not n_byte:
             if byte >> 7 != 0:
                 return False
