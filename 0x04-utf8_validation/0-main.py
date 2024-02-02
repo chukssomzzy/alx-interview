@@ -1,18 +1,18 @@
 #!/usr/bin/python3
 validUTF8 = __import__('0-validate_utf8').validUTF8
 
-# # Test Case 1: Single-byte character (ASCII)
-# data = [65]
-# assert validUTF8(data) is True  # Should print True
-#
-# # Test Case 2: Multi-byte character (ASCII)
-# data = [80, 121, 116, 104, 111, 110, 32, 105, 115, 32, 99, 111, 111, 108, 33]
-# assert validUTF8(data) is True  # Should print True
-#
-# # Test Case 3: Invalid UTF-8 encoding
-# data = [229, 65, 127, 256]
-# assert validUTF8(data) is False  # Should print False
-#
+# Test Case 1: Single-byte character (ASCII)
+data = [65]
+assert validUTF8(data) is True  # Should print True
+
+# Test Case 2: Multi-byte character (ASCII)
+data = [80, 121, 116, 104, 111, 110, 32, 105, 115, 32, 99, 111, 111, 108, 33]
+assert validUTF8(data) is True  # Should print True
+
+# Test Case 3: Invalid UTF-8 encoding
+data = [229, 65, 127, 256]
+assert validUTF8(data) is False  # Should print False
+
 # Test Case 4: Valid 2-byte character
 data = [194, 128]
 assert validUTF8(data) is True  # Should print True
