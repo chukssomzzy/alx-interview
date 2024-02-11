@@ -4,10 +4,7 @@ Solves N queens problem
 """
 
 
-from typing import List
-
-
-def create_board(N: int) -> List[List[int]]:
+def create_board(N):
     """Create N*N board
     Args:
         N: represent the row and column of board
@@ -17,7 +14,7 @@ def create_board(N: int) -> List[List[int]]:
     return [[0 for _ in range(N)] for _ in range(N)]
 
 
-def print_board(board: List[List[int]], N: int) -> None:
+def print_board(board):
     """Prints a board
     Args:
         board (list of list): list representation of a board
@@ -25,12 +22,14 @@ def print_board(board: List[List[int]], N: int) -> None:
     Returns:
         None
     """
-    for row in board:
-        print(" ".join(map(str, row)))
-    print()
+    printable_board = []
+    for i, row in enumerate(board):
+        printable_board.append(
+            list([i, j] for j, val in enumerate(row) if val)[0])
+    print(printable_board)
 
 
-def is_safe(board: List[List[int]], row: int, col: int, N: int) -> bool:
+def is_safe(board, row, col, N):
     """Check if the position a queen is to be inserted is not under attack
     Args:
         board (list of list): A representation of a board
@@ -52,7 +51,7 @@ def is_safe(board: List[List[int]], row: int, col: int, N: int) -> bool:
     return True
 
 
-def solve_board(board: List[List[int]], row: int, N: int) -> bool:
+def solve_board(board, row, N):
     """Find all possible position N queens can be put in a
     N*N square without attacking each other
     Args:
@@ -69,12 +68,9 @@ def solve_board(board: List[List[int]], row: int, N: int) -> bool:
     for i in range(N):
         if is_safe(board, row, i, N):
             board[row][i] = 1
-            if not solve_board(board, row + 1, N):
-                board[row][i] = 0
-            else:
-                print_board(board, N)
-                continue
-
+            if solve_board(board, row + 1, N):
+                print_board(board)
+            board[row][i] = 0
     return False
 
 
